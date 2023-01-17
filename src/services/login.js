@@ -1,5 +1,6 @@
-import axio from "axios";
+import axios from "axios";
 
-export default function login(credentials) {
-  return axio.post("/api/login", credentials);
+export default async function login(credentials) {
+  const response = await axios.post("http://localhost:3003/api/login", credentials);
+  return response.data;
 }

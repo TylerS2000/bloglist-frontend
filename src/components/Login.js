@@ -9,7 +9,10 @@ export default function Login(props){
             <input type="text" name="username" value={props.username} onChange={(event)=>props.setUsername(event.target.value)}/>
             <label>Password</label>
             <input type="password" name="password" value={props.password} onChange={(event)=>props.setPassword(event.target.value)} />
-            <button type="submit" onClick={login({username:props.username, password:props.password})}>Login</button>
+            <button type="submit" onClick={async (event)=>{
+                event.preventDefault(); const user = await login({username:props.username, password:props.password})
+                props.setUser(user);localStorage.setItem('user', JSON.stringify(user))
+                }}>Login</button>
         </form>
     </div>)
 }
